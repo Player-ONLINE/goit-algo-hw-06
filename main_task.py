@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+class Record:
+    def __init__(self, name):
+        self.name = Name(name)
+        self.phones = []
+
+    def add_phone(self, phone):
+        self.phones.append(Phone(phone))
+
+    def remove_phone(self, phone):
+        phone_obj = self.find_phone(phone)
+        if phone_obj:
+            self.phones.remove(phone_obj)
+
+    def edit_phone(self, old_phone, new_phone):
+        if not new_phone.isdigit() or len(new_phone) != 10:
+            raise ValueError("Phone number must be 10 digits.")
+        
+        phone_obj = self.find_phone(old_phone)
+        if phone_obj:
+            self.remove_phone(old_phone)
+            self.add_phone(new_phone)
+        else:
+            raise ValueError("Phone number not found.")
+
+    def find_phone(self, phone):
+        for p in self.phones:
+            if p.value == phone:
+                return p
+        return None
+
+    def __str__(self):
+        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+=======
 from collections import UserDict
 
 class Field:
@@ -59,3 +93,4 @@ class AddressBook(UserDict):
 
     def __str__(self):
         return '\n'.join(str(record) for record in self.data.values())
+>>>>>>> 07b60da8cecc6fcd539eb33ca518b0a2ca09f3d0
